@@ -1,56 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Birthday Wishes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
 
 <style>
+
 body{
+    margin:0;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
     text-align:center;
-    font-family:Arial;
-    background:linear-gradient(to right,#ff9a9e,#fad0c4);
-    padding-top:100px;
+    background:linear-gradient(135deg,#ff6ec4,#7873f5);
+    color:white;
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    margin-top:120px;
 }
 
 h1{
-    font-size:50px;
-    color:white;
+    font-size:55px;
 }
 
 p{
-    font-size:25px;
-    color:white;
+    font-size:24px;
 }
 
 button{
-    padding:15px 30px;
-    font-size:20px;
+    padding:15px 25px;
+    font-size:18px;
     border:none;
     border-radius:10px;
     cursor:pointer;
+    margin:10px;
 }
-</style>
 
+.balloon{
+    position:absolute;
+    bottom:-150px;
+    width:60px;
+    height:80px;
+    border-radius:50%;
+    animation:float 10s infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0);
+    }
+    100%{
+        transform:translateY(-120vh);
+    }
+}
+
+</style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1 id="wish"></h1>
 
-<p>🎂 Have an amazing birthday! 🎉</p>
+<p>🎂 Wishing you happiness, success and joy! 🎉</p>
 
-<button onclick="showConfetti()">Celebrate</button>
+<button onclick="celebrate()">Celebrate 🎉</button>
+
+<button onclick="shareWhatsApp()">Share WhatsApp 📱</button>
+
+</div>
+
+<div class="balloon" style="left:10%;background:red;"></div>
+<div class="balloon" style="left:30%;background:yellow;animation-delay:2s;"></div>
+<div class="balloon" style="left:50%;background:lime;animation-delay:4s;"></div>
+<div class="balloon" style="left:70%;background:orange;animation-delay:1s;"></div>
+<div class="balloon" style="left:90%;background:cyan;animation-delay:3s;"></div>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <script>
 
 const params = new URLSearchParams(window.location.search);
 const name = params.get("name") || "Friend";
 
-document.getElementById("wish").innerText =
-"Happy Birthday " + name + " 🎂";
+document.getElementById("wish").innerHTML =
+"🎂 Happy Birthday " + name + " 🎂";
 
-function showConfetti(){
-    alert("🎉 Happy Birthday " + name + " 🎉");
+function celebrate(){
+
+confetti({
+particleCount:300,
+spread:180,
+origin:{y:0.6}
+});
+
 }
+
+function shareWhatsApp(){
+
+const url = window.location.href;
+
+window.open(
+"https://wa.me/?text=" +
+encodeURIComponent(
+"🎂 Happy Birthday! Open this surprise: " + url
+)
+);
+
+}
+
+setInterval(() => {
+
+confetti({
+particleCount:50,
+spread:70
+});
+
+},4000);
 
 </script>
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Wishes</title>
+
+<style>
+body{
+    text-align:center;
+    font-family:Arial;
+    background:linear-gradient(to right,#ff9a9e,#fad0c4);
+    padding-top:100px;
+}
+
+h1{
+    font-size:50px;
+    color:white;
+}
+
+p{
+    font-size:25px;
+    color:white;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 id="wish"></h1>
+
+<p>🎂 Have an amazing birthday! 🎉</p>
+
+<button onclick="showConfetti()">Celebrate</button>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name") || "Friend";
+
+document.getElementById("wish").innerText =
+"Happy Birthday " + name + " 🎂";
+
+function showConfetti(){
+    alert("🎉 Happy Birthday " + name + " 🎉");
+}
+
+</script>
+
+</body>
+</html>
